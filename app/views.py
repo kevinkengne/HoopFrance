@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Player, Team
 
-# Create your views here.
 def index(request):
     return HttpResponse("HoopFrance index.")
 

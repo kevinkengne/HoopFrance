@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'stats/menu.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1><span class="logoWhite">Hoop</span><span class="logoRed">France</span></h1>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle"/>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'scores' %}">Scores</a></li>
+                    <li><a href="{% url 'schedule' %}">Schedule</a></li>
+                    <li><a href="{% url 'standing' %}">Standings</a></li>
+                    <li><a href="{% url 'players' %}">Players</a></li>
+                    <li><a href="{% url 'teams' %}">Teams</a></li>
+                </ul>
+            </nav>
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span></span>
+            </label>
+        </header>
+    </body>
+</html>
+
