@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Saira&display=swap');
+
+html, body {
+    font-family: 'Saira', sans-serif;
+    height: 100%
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.logoBlue {
+    color: rgba(29, 66, 138, 1);
+}

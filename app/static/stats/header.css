@@ -1,13 +1,9 @@
-
-@import url('https://fonts.googleapis.com/css?family=Saira&display=swap');
-
 :root {
     --navColor: rgba(29, 66, 138, 1);
 }
 
 header {
     background-color: var(--navColor);
-    font-family: 'Saira', sans-serif;
     position: fixed;
     text-align: center;
     width: 100%;

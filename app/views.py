@@ -4,13 +4,13 @@ from django.template import loader
 from .models import Player, Team
 
 def index(request):
-    return HttpResponse("HoopFrance index.")
+    return render(request, 'stats/index.html')
 
 def player(request, player_id):
-    return HttpResponse("HoopFrance single_team.")
+    return render(request, 'players/player.html')
 
 def players(request):
-    return HttpResponse("HoopFrance players.")
+    return render(request, 'players/index.html')
 
 def news(request):
     return render(request, 'stats/news.html')

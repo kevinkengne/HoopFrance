@@ -2,7 +2,9 @@
 {% load static %}
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'stats/menu.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'stats/header.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'stats/footer.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'stats/style.css' %}">
     </head>
     <body>
         <header>
@@ -21,6 +23,22 @@
                 <span></span>
             </label>
         </header>
+        <div class="content">
+            <h1>Hi</h1>
+        </div>
+        <footer class="footer-container border-top ml-1 mr-1 pt-3 pb-3">
+            <ul class="list-style-none d-flex flex-wrap">
+                <li class="mr-3 text-gray">&copy 2020, HoopFrance, Inc.</li>
+                <li class="mr-3"><a href="{% url 'scores' %}">Scores</a></li>
+                <li class="mr-3"><a href="{% url 'schedule' %}">Schedule</a></li>
+            </ul>
+            <p class="ml-3"><a href="{% url 'home' %}"><span class="logoBlue">Hoop</span><span class="logoRed">France</span></a></p>
+            <ul class="list-style-none d-flex flex-wrap">
+                <li class="mr-3"><a href="{% url 'standing' %}">Standings</a></li>
+                <li class="mr-3"><a href="{% url 'players' %}">Players</a></li>
+                <li class="mr-3"><a href="{% url 'teams' %}">Teams</a></li>
+            </ul>
+        </footer>
     </body>
 </html>
 
