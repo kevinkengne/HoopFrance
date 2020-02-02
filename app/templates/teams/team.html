@@ -1,0 +1,6 @@
+<h1>{{ team.nick_name }}</h1>
+<ul>
+{% for player in team.player_set.all %}
+    <li>{{ player }}</li>
+{% endfor %}
+</ul>
