@@ -1,10 +1,34 @@
 {% extends 'stats/base.html' %}
-{% if team_list %}
-    <ul>
-    {% for team in team_list %}
-        <li><a href="{% url 'team' team.team_id %}">{{team.short_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No teams are available.</p>
-{% endif %}
+    {% block content %}
+        {% if team_list %}
+        <div class="ui cards centered-flex-container">
+        {% for team in team_list %}
+            <div class="card">
+                <div class="image card-img">
+                <img src="https://stats.nba.com/media/img/teams/logos/{{ team.short_name }}_logo.svg">
+                </div>
+                <div class="content">
+                <div class="header">{{ team.full_name }}</div>
+                <div class="meta">
+                    <a href="{% url 'team' team.team_id %}">See Roster</a>
+                </div>
+                <div class="description">
+                    
+                </div>
+                </div>
+                <div class="extra content">
+                <span class="right floated">
+                    <a>D. -> {{ team.div_name }}</a>
+                </span>
+                <span>
+                    <a>C. -> {{ team.conf_name }}</a>
+                </span>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        {% else %}
+            <p>No teams are available.</p>
+        {% endif %}
+    {% endblock content %}
+    

@@ -6,14 +6,38 @@ html, body {
 }
 
 body {
+    margin: 0;
     display: flex;
     flex-direction: column;
 }
 
 .content {
     flex: 1 0 auto;
+    margin-top: 125px;
+    margin-bottom: 50px;
+}
+
+.centered-flex-container {
+    justify-content: center;
+}
+
+.hoop-primary {
+    color: #ff5722 !important; 
+}
+
+.hoop-secondary {
+    color: #ff9800 !important;
+}
+
+a.hoop-secondary:hover {
+    color: #ff5722 !important;
 }
 
 .logoBlue {
     color: rgba(29, 66, 138, 1);
+}
+
+.card-img {
+    max-width: 100%;
+    height: auto;
 }

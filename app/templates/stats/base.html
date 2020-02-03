@@ -2,9 +2,15 @@
 {% load static %}
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/card.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'stats/header.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'stats/footer.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'stats/style.css' %}">
+        <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+        <script src="{% static 'scripts/semantic.min.js' %}"></script>
     </head>
     <body>
         <header>
@@ -24,7 +30,8 @@
             </label>
         </header>
         <div class="content">
-            <h1>Hi</h1>
+            {% block content %}
+            {% endblock content %}
         </div>
         <footer class="footer-container border-top ml-1 mr-1 pt-3 pb-3">
             <ul class="list-style-none d-flex flex-wrap">
