@@ -3,6 +3,7 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/card.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/accordion.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'stats/header.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'stats/footer.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'stats/style.css' %}">
@@ -29,7 +30,7 @@
                 <span></span>
             </label>
         </header>
-        <div class="content">
+        <div class="content-block">
             {% block content %}
             {% endblock content %}
         </div>
@@ -46,6 +47,11 @@
                 <li class="mr-3"><a href="{% url 'teams' %}">Teams</a></li>
             </ul>
         </footer>
+        <script language='javascript'>
+            $(document).ready(function(){
+               $('.ui.accordion').accordion();
+            });
+        </script>
     </body>
 </html>
 

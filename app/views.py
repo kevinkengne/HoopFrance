@@ -10,7 +10,21 @@ def player(request, player_id):
     return render(request, 'players/player.html')
 
 def players(request):
-    return render(request, 'players/index.html')
+    guards = Player.objects.filter(pos='G')
+    guard_forwards = Player.objects.filter(pos='G-F')
+    forwards = Player.objects.filter(pos='F')
+    centers = Player.objects.filter(pos='C')
+    forward_centers = Player.objects.filter(pos='F-C')
+
+    context = {
+        'guards': guards,
+        'guard_forwards': guard_forwards,
+        'forwards': forwards,
+        'centers': centers,
+        'forward_centers': forward_centers
+    }
+    
+    return render(request, 'players/index.html', context)
 
 def news(request):
     return render(request, 'stats/news.html')

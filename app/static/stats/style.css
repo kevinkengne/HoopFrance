@@ -11,7 +11,9 @@ body {
     flex-direction: column;
 }
 
-.content {
+.content-block {
+    display: flex;
+    justify-content: center;
     flex: 1 0 auto;
     margin-top: 125px;
     margin-bottom: 50px;
@@ -35,6 +37,10 @@ a.hoop-secondary:hover {
 
 .logoBlue {
     color: rgba(29, 66, 138, 1);
+}
+
+.midsize-container {
+    width: 80%;
 }
 
 .card-img {
