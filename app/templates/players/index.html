@@ -1,9 +1,10 @@
 {% extends 'stats/base.html' %}
-{% block content %}
-<div class="ui midsize-container centered-flex-container">
-    <h1>Guards</h1>
-    <div class="ui styled fluid accordion">
-    {% for player in guards %}
+{% block content %} 
+    <div class="column-container">
+        {% for position, players in positions.items %}
+        <h1>{{ position }}</h1>
+        <div class="ui styled fluid accordion">
+        {% for player in players %}
             <div class="title">
             <i class="dropdown icon"></i>
             {{ player }}
@@ -16,7 +17,8 @@
                 {% if player.country %}<p>Country: {{ player.country }}</p>{% endif %}
                 {% if player.years_pro %}<p>Years pro: {{ player.years_pro }}</p>{% endif %}
             </div>
-    {% endfor %}
+        {% endfor %}
+        </div>
+        {% endfor %}
     </div>
-</div>
 {% endblock content %}

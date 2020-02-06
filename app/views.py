@@ -17,13 +17,15 @@ def players(request):
     forward_centers = Player.objects.filter(pos='F-C')
 
     context = {
-        'guards': guards,
-        'guard_forwards': guard_forwards,
-        'forwards': forwards,
-        'centers': centers,
-        'forward_centers': forward_centers
+        'positions' : {
+            'Guards': guards,
+            'Guard Forwards': guard_forwards,
+            'Forwards': forwards,
+            'Centers': centers,
+            'Forward Centers': forward_centers
+        }
     }
-    
+
     return render(request, 'players/index.html', context)
 
 def news(request):

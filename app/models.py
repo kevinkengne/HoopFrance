@@ -37,3 +37,20 @@ class Player(models.Model):
     class Meta:
         managed = False
         db_table = 'players'
+
+class Game(models.Model):
+    game_id = models.IntegerField(primary_key=True)
+    home_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='home')
+    away_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='away')
+    date_time = models.CharField(max_length=50)
+    home_score = models.IntegerField()
+    away_score = models.IntegerField()
+
+class Standing(models.Model):
+    team_id = models.OneToOneField(Team, on_delete=models.CASCADE)
+    win = models.IntegerField()
+    loss = models.IntegerField()
+    conference = models.CharField(max_length=4)
+    conference_rank = models.IntegerField()
+    division = models.CharField(max_length=20)
+    division_rank = models.IntegerField()
