@@ -1,1 +1,27 @@
 {% extends 'stats/base.html' %}
+{% block content %} 
+    <div>
+      <table class="ui single line table">
+        <thead>
+            <tr>
+                <th>Home</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Away</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in scores %}
+            <tr>
+                <td>{{ score.home_team.nick_name }} </td>
+                <td>{{ score.home_score }}</td>
+                <td> - </td>
+                <td>{{ score.away_score }}</td>
+                <td>{{ score.away_team.nick_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock content %}

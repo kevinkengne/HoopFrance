@@ -1,1 +1,29 @@
 {% extends 'stats/base.html' %}
+{% block content %} 
+    <div>
+        {% for conference, teams in conferences.items %}
+        <table class="ui single line table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Division</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for team in teams %}
+                <tr>
+                    <td>{{ team.conference_rank }}</td>
+                    <td>{{ team.team.full_name }}</td>
+                    <td>{{ team.win }}</td>
+                    <td>{{ team.loss }}</td>
+                    <td>{{ team.division }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+{% endblock content %}

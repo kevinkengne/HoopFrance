@@ -47,7 +47,7 @@ class Game(models.Model):
     away_score = models.IntegerField()
 
 class Standing(models.Model):
-    team_id = models.OneToOneField(Team, on_delete=models.CASCADE)
+    team = models.OneToOneField(Team, primary_key=True, on_delete=models.CASCADE)
     win = models.IntegerField()
     loss = models.IntegerField()
     conference = models.CharField(max_length=4)

@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
-from .models import Player, Team
+from .models import Game, Player, Standing, Team
 
 def index(request):
     return render(request, 'stats/index.html')
@@ -35,10 +35,23 @@ def schedule(request):
     return render(request, 'stats/schedule.html')
 
 def scores(request):
-    return render (request, 'stats/scores.html')
+    scores = Game.objects.all()
+    context = {
+        'scores': scores
+    }
+    return render(request, 'stats/scores.html', context)
 
 def standing(request):
-    return render(request, 'stats/standing.html')
+    western = Standing.objects.filter(conference = 'west').order_by('-win')
+    eastern = Standing.objects.filter(conference = 'east').order_by('-win')
+    context = {
+        'conferences': {
+            'western': western,
+            'eastern': eastern
+        }
+        
+    }
+    return render(request, 'stats/standing.html', context)
 
 def team(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
