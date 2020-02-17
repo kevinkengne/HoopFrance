@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.template import loader
 from .models import Game, Player, Standing, Team
+from .api.duels import load_duels
 
 def index(request):
     return render(request, 'stats/index.html')
@@ -18,11 +19,11 @@ def players(request):
 
     context = {
         'positions' : {
-            'Guards': guards,
-            'Guard Forwards': guard_forwards,
-            'Forwards': forwards,
-            'Centers': centers,
-            'Forward Centers': forward_centers
+            'guards': guards,
+            'guard-forwards': guard_forwards,
+            'forwards': forwards,
+            'centers': centers,
+            'forward-centers': forward_centers
         }
     }
 
@@ -31,8 +32,12 @@ def players(request):
 def news(request):
     return render(request, 'stats/news.html')
 
-def schedule(request):
-    return render(request, 'stats/schedule.html')
+def duels(request):
+    duels = load_duels()
+    context = {
+        'duels': duels
+    }
+    return render(request, 'stats/duels.html', context)
 
 def scores(request):
     scores = Game.objects.all()

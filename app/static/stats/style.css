@@ -53,3 +53,13 @@ a.hoop-secondary:hover {
     max-width: 100%;
     height: auto;
 }
+
+.ui.fluid.dropdown {
+    width: inherit !important;
+    min-height: 0 !important;
+}
+
+.ui.fluid.dropdown.players {
+    align-self: center;
+    margin-bottom: 20px;
+}

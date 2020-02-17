@@ -1,0 +1,35 @@
+{% extends 'stats/base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'stats/duels.css' %}">
+{% endblock %}
+{% block content %}
+<div class="column-container">
+    <section id="video">
+        <iframe 
+            width="800px"
+            height="450px"
+            src="https://www.youtube.com/embed/{{ duels.0.snippet.resourceId.videoId }}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </section>
+    <main>
+        {% for duel in duels %}
+            <article class="item " data-key="{{ duel.snippet.resourceId.videoId }}">
+                <img src="{{ duel.snippet.thumbnails.medium.url }}" alt="" class="thumb">
+                <div class="details">
+                    <h4>{{ duel.snippet.title }}</h4>
+                    <p>{{ duel.snippet.description|slice:'0:140'|add:'...' }}</p>
+                </div>
+            </article>
+        {% endfor %}
+    </main>
+</div>
+{% endblock content %}
+{% block script %}
+<script src="{% static 'scripts/duels.js'%}">
+
+</script>
+{% endblock script %}

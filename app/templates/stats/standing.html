@@ -1,8 +1,14 @@
 {% extends 'stats/base.html' %}
 {% block content %} 
     <div>
+        <select class="ui fluid dropdown">
+            <option value="">Select a Conference</div>
+            {% for conference in conferences.keys %}
+                <option value="{{ conference }}">{{ conference }}</option>
+            {% endfor %}
+        </select>
         {% for conference, teams in conferences.items %}
-        <table class="ui single line table">
+        <table class="ui single line table {{ conference }}">
             <thead>
                 <tr>
                     <th>Rank</th>
@@ -27,3 +33,15 @@
         {% endfor %}
     </div>
 {% endblock content %}
+{% block script %}
+<script language="javascript">
+    $(document).ready(function(){
+        $('.dropdown').dropdown();
+        $(".ui.dropdown").change(function(){
+            var selectedConference = $('.ui.dropdown option:selected').val();
+            $('.table').not(`.${selectedConference}`).hide();
+            $(`.${selectedConference}`).show();
+        }); 
+    });
+</script>
+{% endblock %}
