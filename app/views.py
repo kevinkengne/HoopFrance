@@ -1,33 +1,27 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template import loader
 from .models import Game, Player, Standing, Team
+from .serializers import TeamSerializer, GameSerializer, PlayerSerializer, StandingSerializer
 from .api.duels import load_duels
 
 def index(request):
     return render(request, 'stats/index.html')
 
 def player(request, player_id):
-    return render(request, 'players/player.html')
+    if request.method == 'GET':
+        player = get_object_or_404(Player, pk=player_id)
+        serializer = PlayerSerializer(player, many=False)
+    return JsonResponse(serializer.data, safe=False)
 
 def players(request):
-    guards = Player.objects.filter(pos='G')
-    guard_forwards = Player.objects.filter(pos='G-F')
-    forwards = Player.objects.filter(pos='F')
-    centers = Player.objects.filter(pos='C')
-    forward_centers = Player.objects.filter(pos='F-C')
-
-    context = {
-        'positions' : {
-            'guards': guards,
-            'guard-forwards': guard_forwards,
-            'forwards': forwards,
-            'centers': centers,
-            'forward-centers': forward_centers
-        }
-    }
-
-    return render(request, 'players/index.html', context)
+    if request.method == 'GET':
+        players = Player.objects.all()
+        position = request.GET.get('pos', None)
+        if position is not None:
+            players = players.filter(pos=position)
+        serializer = PlayerSerializer(players, many=True)
+    return JsonResponse(serializer.data, safe=False)
 
 def news(request):
     return render(request, 'stats/news.html')
@@ -41,34 +35,29 @@ def duels(request):
 
 def scores(request):
     scores = Game.objects.all()
-    context = {
-        'scores': scores
-    }
-    return render(request, 'stats/scores.html', context)
+    serializer = GameSerializer(scores, many=True)
+    return JsonResponse(serializer.data, safe=False)
 
 def standing(request):
-    western = Standing.objects.filter(conference = 'west').order_by('-win')
-    eastern = Standing.objects.filter(conference = 'east').order_by('-win')
-    context = {
-        'conferences': {
-            'western': western,
-            'eastern': eastern
-        }
-        
-    }
-    return render(request, 'stats/standing.html', context)
+    if request.method == 'GET':
+        standing = Standing.objects.all()
+        conference = request.GET.get('conference', None)
+        if conference == 'west':
+            standing = standing.filter(conference = 'west').order_by('-win')
+        elif conference == 'east':
+            standing = standing.filter(conference = 'east').order_by('-win')
+        serializer = StandingSerializer(standing, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 def team(request, team_id):
-    team = get_object_or_404(Team, pk=team_id)
-    context = {
-        'team': team
-    }
-    return render(request, 'teams/team.html', context)
+    if request.method == 'GET':
+        team = get_object_or_404(Team, pk=team_id)
+        serializer = TeamSerializer(team, many=False)
+    return JsonResponse(serializer.data, safe=False)
 
 def teams(request):
-    team_list = Team.objects.all()
-    context = {
-        'team_list': team_list
-    }
-    return render(request, 'teams/index.html', context)
+    if request.method == 'GET':
+        teams = Team.objects.all()
+        serializer = TeamSerializer(teams, many=True)
+    return JsonResponse(serializer.data, safe=False)
 
